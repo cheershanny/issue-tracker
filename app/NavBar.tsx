@@ -18,9 +18,8 @@ const NavBar = () => {
       </Link>
       <ul className="flex space-x-6">
         {links.map((link) => (
-          <li>
+          <li key={link.href}>
             <Link
-              key={link.href}
               href={link.href}
               className={classNames({
                 "text-zinc-900": currentPath === link.href,
