@@ -7,7 +7,7 @@ import "easymde/dist/easymde.min.css";
 import { useRouter } from "next/navigation";
 import { AiOutlineInfoCircle } from "react-icons/ai";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { set, z } from "zod";
+import { z } from "zod";
 import { createIssueSchema } from "@/app/validationSchema";
 import ErrorMessage from "@/app/components/ErrorMessage";
 
@@ -33,8 +33,10 @@ const NewIssuePage = () => {
         },
         body: JSON.stringify(data),
       });
-      setSubmitting(true);
-      router.push("/issues");
+      if (response.ok) {
+        setSubmitting(true);
+        router.push("/issues");
+      }
     } catch (error) {
       setSubmitting(false);
       setErrorMessage("An unexpected error occurred");
